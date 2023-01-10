@@ -61,7 +61,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ms_nav-link {{Route::currentRouteName() === 'admin.projects.index' ? 'ms_active' : ''}}" href="{{route('admin.projects.index')}}">
+                            <a class="nav-link ms_nav-link {{str_contains(Route::currentRouteName(),'admin.projects') ? 'ms_active' : ''}}" href="{{route('admin.projects.index')}}">
                                 <span class="align-text-bottom"><i class="fa-solid fa-pencil"></i></span>
                                 Projects
                             </a>
@@ -71,6 +71,9 @@
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 min-vh-100">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-5 pb-2 mb-3 border-bottom">
+                    <h1>@yield('name')</h1>
+                </div>
                 @yield('content')
             </main>
         </div>
