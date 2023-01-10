@@ -10,6 +10,14 @@
     user-select: none;
 }
 
+.nav-link.ms_nav-link {
+    color: gray;
+}
+
+.nav-link.ms_nav-link.ms_active {
+    color: black;
+}
+
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
