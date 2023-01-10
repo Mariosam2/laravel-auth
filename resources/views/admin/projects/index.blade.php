@@ -32,7 +32,7 @@ Projects
                     <td><img class="w-25 h-25" src="{{$project->img}}" alt="{{$project->title}}"></td>
                     <td>{{$project->creation_date}}</td>
                     <td>
-                        <a class="d-flex text-white p-2 my-2 bg-primary justify-content-center rounded-2" href=""><i class="fa-solid fa-eye"></i></a>
+                        <a class="d-flex text-white p-2 my-2 bg-primary justify-content-center rounded-2" href="{{route('admin.projects.show', $project->title)}}"><i class="fa-solid fa-eye"></i></a>
                         <a class="d-flex text-white p-2 my-2 bg-secondary justify-content-center rounded-2" href=""><i class="fa-solid fa-pen-to-square"></i></a>
                         <a class="d-flex text-white p-2 my-2 bg-danger justify-content-center rounded-2" href=""><i class="fa-solid fa-trash"></i></a>
                     </td>
