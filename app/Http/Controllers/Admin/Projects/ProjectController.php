@@ -39,19 +39,20 @@ class ProjectController extends Controller
     public function store(ProjectStoreRequest $request)
     {
         $val_data = $request->validated();
-        Project::create($val_data);
+        $val_data = Project::make($val_data)->setSlug();
+        dd($val_data);
         return to_route('admin.projects.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Project $project)
     {
-        $project = Project::where('slug', $slug)->first();
+        //dd($project);
         return view('admin.projects.show', compact('project'));
     }
 
@@ -61,9 +62,8 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
     }
 
     /**
