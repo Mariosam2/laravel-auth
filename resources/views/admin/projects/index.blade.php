@@ -29,12 +29,40 @@ Projects
                 <tr class="table-light">
                     <td scope="row" class="pe-3 fw-bold">{{$project->id}}</td>
                     <td>{{$project->title}}</td>
-                    <td><img class="w-25 h-25" src="{{$project->img}}" alt="{{$project->title}}"></td>
-                    <td>{{date('d/m/Y',strtotime($project->creation_date))}}</td>
+                    <td><img class="w-25" src="{{$project->img}}" alt="{{$project->title}}"></td>
+                    <td class="pe-3">{{date('d/m/Y',strtotime($project->creation_date))}}</td>
                     <td>
                         <a class="d-flex text-white p-2 my-2 bg-primary justify-content-center rounded-2" href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-eye"></i></a>
-                        <a class="d-flex text-white p-2 my-2 bg-secondary justify-content-center rounded-2" href=""><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a class="d-flex text-white p-2 my-2 bg-danger justify-content-center rounded-2" href=""><i class="fa-solid fa-trash"></i></a>
+                        <a class="d-flex text-white p-2 my-2 bg-secondary justify-content-center rounded-2" href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                        <form action="{{route('admin.projects.destroy', $project->slug)}}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <!-- Modal trigger button -->
+                            <button type="button" class="btn w-100 d-flex text-white p-2 my-2 bg-danger justify-content-center rounded-2" data-bs-toggle="modal" data-bs-target="#modal{{$project->id}}">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modal{{$project->id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitle{{$project->id}}">Deleting <strong class="text-danger">{{$project->title}}</strong></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </td>
                 </tr>
                 @empty

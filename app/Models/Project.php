@@ -11,7 +11,7 @@ class Project extends Model
     use HasFactory;
     protected $fillable = ['title', 'img', 'description', 'creation_date'];
 
-    public  function setSlug()
+    public  function getProjectWithSlug()
     {
         $this->setAttribute('slug', Str::slug($this->getAttribute('title')));
         return $this;

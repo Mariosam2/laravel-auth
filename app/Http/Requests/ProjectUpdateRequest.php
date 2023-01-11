@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProjectStoreRequest extends FormRequest
+class ProjectUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +24,9 @@ class ProjectStoreRequest extends FormRequest
      */
     public function rules()
     {
+        //dd($this);
         return [
-            'title' => ['required', 'unique:projects', 'max:50'],
+            'title' => ['required', Rule::unique('projects')->ignore($this->id), 'max:50'],
             'img' => ['nullable', 'max:255'],
             'description' => ['nullable', 'max:255'],
             'creation_date' => ['nullable', 'date']

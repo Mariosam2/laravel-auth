@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Projects;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectStoreRequest;
+use App\Http\Requests\ProjectUpdateRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class ProjectController extends Controller
     public function store(ProjectStoreRequest $request)
     {
         $val_data = $request->validated();
-        $val_data = Project::make($val_data)->setSlug()->save();
+        $val_data = Project::make($val_data)->getProjectWithSlug()->save();
         return to_route('admin.projects.index');
     }
 
@@ -58,33 +59,37 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit(Project $project)
     {
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\ProjectUpdateRequest;  $request
+     * @param   Project $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProjectUpdateRequest $request, Project $project)
     {
-        //
+        $val_data = $request->validated();
+        $project->getProjectWithSlug()->update($val_data);
+        return to_route('admin.projects.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Project $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return to_route('admin.projects.index');
     }
 }

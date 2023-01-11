@@ -6,7 +6,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="card col-12 col-md-8 col-xxl-5 p-0">
+        <div class="card col-12 col-md-8 col-xxl-5 p-0 ms-3">
             <img class="card-img-top" src="{{$project->img}}" alt="{{$project->title}}">
             <div class="card-body">
                 <p class="card-text">{{$project->description}}</p>

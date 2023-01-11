@@ -35,7 +35,7 @@ Add Project
     </div>
     <div class="mt-3 d-flex justify-content-between">
         <button type="submit" class="btn btn-secondary">Add</button>
-        <button class="btn btn-secondary"><a class="text-white" href="{{route('admin.projects.index')}}">Back to projects</a></button>
+        <a class="btn btn-secondary text-white" href="{{route('admin.projects.index')}}">Back to projects</a>
     </div>
 
 </form>
