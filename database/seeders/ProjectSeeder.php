@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Project;
+use Illuminate\Support\Str;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -23,10 +24,11 @@ class ProjectSeeder extends Seeder
         $img_faker->addProvider(new Bluemmb($img_faker));
         for ($i = 0; $i < 10; $i++) {
             $project = new Project();
-            $project->title = $faker->words(3, true);
+            $project->title =  ucfirst($faker->words(3, true));
+            $project->slug = Str::slug($project->title);
             $project->img = $img_faker->imageUrl();
             $project->description = $faker->text();
-            $project->creation_date = $faker->dateTime();
+            $project->creation_date = $faker->date();
             $project->save();
         }
     }

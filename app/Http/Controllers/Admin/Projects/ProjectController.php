@@ -46,13 +46,13 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($title)
+    public function show($slug)
     {
-        $project = Project::where('title', $title)->get();
-        return to_route('admin.projects.show', compact('project'));
+        $project = Project::where('slug', $slug)->first();
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
