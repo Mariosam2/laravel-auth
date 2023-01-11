@@ -7,7 +7,7 @@ Projects
 
 @endsection
 @section('content')
-<div class="p-5">
+<div class="w-75 ms-4 mt-4">
     <div class="table-responsive">
         <table class="table table-striped
     table-hover	
@@ -29,17 +29,17 @@ Projects
                 <tr class="table-light">
                     <td scope="row" class="pe-3 fw-bold">{{$project->id}}</td>
                     <td>{{$project->title}}</td>
-                    <td><img class="w-25" src="{{$project->img}}" alt="{{$project->title}}"></td>
+                    <td><img class="img-fluid object-fit-contain" src="{{$project->img}}" alt="{{$project->title}}"></td>
                     <td class="pe-3">{{date('d/m/Y',strtotime($project->creation_date))}}</td>
                     <td>
-                        <a class="d-flex text-white p-2 my-2 bg-primary justify-content-center rounded-2" href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-eye"></i></a>
-                        <a class="d-flex text-white p-2 my-2 bg-secondary justify-content-center rounded-2" href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="d-flex text-white px-5 py-2 m-2 bg-primary justify-content-center rounded-2" href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-eye"></i></a>
+                        <a class="d-flex text-white px-5 py-2 m-2 bg-secondary justify-content-center rounded-2" href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                        <form action="{{route('admin.projects.destroy', $project->slug)}}" method="post">
+                        <form action="{{route('admin.projects.destroy', $project->slug)}}" class="m-2 bg-danger rounded-2" method="post">
                             @method('DELETE')
                             @csrf
                             <!-- Modal trigger button -->
-                            <button type="button" class="btn w-100 d-flex text-white p-2 my-2 bg-danger justify-content-center rounded-2" data-bs-toggle="modal" data-bs-target="#modal{{$project->id}}">
+                            <button type="button" class="btn px-5 py-2 w-100 d-flex text-white justify-content-center" data-bs-toggle="modal" data-bs-target="#modal{{$project->id}}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
 
@@ -57,7 +57,7 @@ Projects
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-danger">Save</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </div>
                                     </div>
                                 </div>
