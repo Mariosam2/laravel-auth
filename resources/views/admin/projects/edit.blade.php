@@ -35,7 +35,7 @@ Edit Project
         <input type="date" class="form-control" name="creation_date" id="creation_date" value="{{old('creation_date', $project->creation_date)}}">
     </div>
     <div class="mt-3 d-flex justify-content-between">
-        <button type="submit" class="btn btn-secondary">Add</button>
+        <button type="submit" class="btn btn-secondary">Edit</button>
         <a class="btn btn-secondary text-white" href="{{route('admin.projects.index')}}">Back to projects</a>
     </div>
 
