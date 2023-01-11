@@ -13,6 +13,7 @@ class Project extends Model
 
     public  function setSlug()
     {
-        $this->slug = Str::slug($this->title);
+        $this->setAttribute('slug', Str::slug($this->getAttribute('title')));
+        return $this;
     }
 }

@@ -39,8 +39,7 @@ class ProjectController extends Controller
     public function store(ProjectStoreRequest $request)
     {
         $val_data = $request->validated();
-        $val_data = Project::make($val_data)->setSlug();
-        dd($val_data);
+        $val_data = Project::make($val_data)->setSlug()->save();
         return to_route('admin.projects.index');
     }
 
