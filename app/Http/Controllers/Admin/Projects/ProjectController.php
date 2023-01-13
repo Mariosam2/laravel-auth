@@ -81,6 +81,15 @@ class ProjectController extends Controller
     public function update(ProjectUpdateRequest $request, Project $project)
     {
         $val_data = $request->validated();
+        /* dd($val_data); */
+        if ($request->hasFile('img')) {
+            if ($project->img) {
+                Storage::delete($project->img);
+            }
+            $img_path = Storage::put('images', $val_data['img']);
+            $val_data['img'] = $img_path;
+        }
+
         $project->getProjectWithSlug()->update($val_data);
         return to_route('admin.projects.index');
     }
@@ -93,6 +102,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->img) {
+            Storage::delete($project->img);
+        }
+
         $project->delete();
         return to_route('admin.projects.index');
     }
