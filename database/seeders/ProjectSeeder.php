@@ -24,13 +24,12 @@ class ProjectSeeder extends Seeder
         $img_faker->addProvider(new picsumFaker($img_faker));
         for ($i = 0; $i < 10; $i++) {
             $project = new Project();
-            /*
             $project->title =  ucfirst($faker->words(3, true));
             $project->slug = Str::slug($project->title);
             $project->description = $faker->text();
             $project->creation_date = $faker->date();
-            $project->save(); */
-            dd($img_faker->image('/storage/public/images', 640, 480));
+            $project->img = $img_faker->image('/storage/public/images', 640, 480);
+            $project->save();
         }
     }
 }
