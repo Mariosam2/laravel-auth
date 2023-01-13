@@ -14,7 +14,7 @@ Edit Project
     </ul>
 </div>
 @endif
-<form action="{{route('admin.projects.update', $project->slug)}}" method="post" class="p-5 mx-5 rounded-2 bg-dark text-white">
+<form action="{{route('admin.projects.update', $project->slug)}}" method="post" class="p-5 mx-5 rounded-2 bg-dark text-white" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="mb-3">
@@ -22,10 +22,15 @@ Edit Project
         <input type="text" name="title" id="title" class="form-control" placeholder="" aria-describedby="helpId" value="{{old('title', $project->title)}}">
         <small id="helpId" class="text-muted">*title is mandatory, must be unique and the max length is 50 chars</small>
     </div>
-    <div class="mb-3">
-        <label for="img" class="form-label">Image</label>
-        <input type="text" name="img" id="img" class="form-control" placeholder="" aria-describedby="helpId" value="{{old('img', $project->img)}}">
+    <div class="upload-img d-flex align-items-center my-3 gap-5">
+        <img style="width:240px; height: auto;" src="{{asset('storage/' . $project->img)}}" alt="{{$project->title}}">
+        <div class="mb-3">
+            <label for="img" class="form-label">Choose file</label>
+            <input type="file" class="form-control" name="img" id="img" placeholder="" aria-describedby="fileHelpId" value="{{old('img', $project->img)}}">
+            <div id="fileHelpId" class="form-text">*max size 300KB</div>
+        </div>
     </div>
+
     <div class=" mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea class="form-control" name="description" id="description" rows="3">{{old('description', $project->description)}}</textarea>

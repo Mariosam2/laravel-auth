@@ -29,7 +29,7 @@ Projects
                 <tr class="table-light">
                     <td scope="row" class="pe-3 fw-bold">{{$project->id}}</td>
                     <td>{{$project->title}}</td>
-                    <td><img style="width:240px; height:auto" src="{{$project->img}}" alt="{{$project->title}}"></td>
+                    <td><img style="width:240px; height:auto" src="{{asset('storage/' . $project->img)}}" alt="{{$project->title}}"></td>
                     <td class="pe-3">{{date('d/m/Y',strtotime($project->creation_date))}}</td>
                     <td>
                         <a class="d-flex text-white  p-3 py-2 m-2 bg-primary justify-content-center rounded-2" href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-eye"></i></a>
