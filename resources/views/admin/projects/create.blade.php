@@ -14,7 +14,7 @@ Add Project
     </ul>
 </div>
 @endif
-<form action="{{route('admin.projects.store')}}" method="post" class="p-5 mx-5 rounded-2 bg-dark text-white">
+<form action="{{route('admin.projects.store')}}" method="post" class="p-5 mx-5 rounded-2 bg-dark text-white" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
@@ -22,8 +22,9 @@ Add Project
         <small id=" helpId" class="text-muted">*title is mandatory, must be unique and the max length is 50 chars</small>
     </div>
     <div class="mb-3">
-        <label for="img" class="form-label">Image</label>
-        <input type="text" name="img" id="img" class="form-control" placeholder="" aria-describedby="helpId" value="{{old('img')}}">
+        <label for="img" class="form-label">Choose file</label>
+        <input type="file" class="form-control" name="img" id="img" placeholder="" aria-describedby="fileHelpId" value="{{old('img')}}">
+        <div id="fileHelpId" class="form-text">*max size 300KB</div>
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Description</label>

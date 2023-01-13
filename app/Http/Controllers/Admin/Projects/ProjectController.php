@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 use App\Models\Project;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -40,6 +42,8 @@ class ProjectController extends Controller
     public function store(ProjectStoreRequest $request)
     {
         $val_data = $request->validated();
+        $img_path = Storage::put('images', $val_data['img']);
+        $val_data['img'] = $img_path;
         $val_data = Project::make($val_data)->getProjectWithSlug()->save();
         return to_route('admin.projects.index');
     }
